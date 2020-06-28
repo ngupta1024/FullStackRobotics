@@ -17,7 +17,6 @@ struct Complex
     double imagcomp;
 
 };
-
 std::ostream& operator<<(std::ostream& os, const Complex& num)
 {
     os<<num.realcomp<<"+ i"<<num.imagcomp<<std::flush;
