@@ -8,39 +8,36 @@ public:
     {
     }
 
-    virtual ~Shape() {}
+    ~Shape() {}
 
     virtual double GetInfo()
     {
+        std::cout<<"this is just a shape"<<'\n';
         return 0.0;
     }
-private:
-    std::string m_Name;
 };
 
-class Rectangle: public virtual Shape
+class Rectangle: public Shape
 {
 public:
-
     Rectangle()
     {
-        //std::string shapeName= "Rectangle";
-        //Shape sh(shapeName);
         m_Length=2.0;
         m_Width=5.0;
     }
+
     Rectangle(double length,double width)
         :m_Length(length),
          m_Width(width)
     {
     }
 
-    virtual bool isSquare()
+    bool isSquare()
     {
         return false;
     }
 
-    virtual double GetInfo()
+    virtual double GetInfo() override
     {
         std::cout<<"this is a rectangle"<<std::endl;
         return m_Width*m_Length;
@@ -53,13 +50,9 @@ protected:
 };
 
 
-class Square: public virtual Rectangle, public virtual Shape
+class Square: public Rectangle
 {
 public:
-    virtual bool isSquare()
-    {
-        return true;
-    }
 
     virtual double GetInfo()
     {
@@ -70,50 +63,49 @@ public:
 
 int main()
 {    
+//    {
+//        auto squareObj= std::make_shared<Square>();
+//        auto rectObj= std::dynamic_cast<std::shared_ptr<Rectangle>>(squareObj);
+//        if (!rectObj)
+//        {
+//            std::cout<<"So, child to parent didn't work"<<'\n';
+//        }
+//        else
+//        {
+//            std::cout<<rectObj->GetInfo()<<std::endl;
+//        }
+//
+//        auto shapeObj = std::dynamic_pointer_cast<Rectangle>(squareObj);
+//        if (!shapeObj)
+//        {
+//            std::cout<<"So, child to parent didn't work"<<'\n';
+//        }
+//        else
+//        {
+//            std::cout<<shapeObj->GetInfo()<<std::endl;
+//        }
+//        auto rectObj_revert = std::dynamic_pointer_cast<Rectangle>(shapeObj);
+//        if (!squareObj)
+//        {
+//            std::cout<<"So, parent to child didn't work"<<'\n';
+//        }
+//        else
+//        {
+//            std::cout<<rectObj_revert->GetInfo()<<std::endl;
+//        }
+//    }
+    
     {
-        auto squareObj= std::make_shared<Square>();
-        auto rectObj= std::dynamic_pointer_cast<Rectangle>(squareObj);
-        if (!rectObj)
-        {
-            std::cout<<"So, child to parent didn't work"<<'\n';
-        }
-        else
-        {
-            std::cout<<rectObj->GetInfo()<<std::endl;
-        }
-
-        auto shapeObj = std::dynamic_pointer_cast<Rectangle>(squareObj);
+        std::shared_ptr<Shape> shapeObj = std::make_shared<Rectangle>(3.0, 4.0);
+        //auto rectObj = std::dynamic_pointer_cast<Rectangle>(shapeObj);
         if (!shapeObj)
         {
-            std::cout<<"So, child to parent didn't work"<<'\n';
+            std::cout<<"So, parent to child didn't work"<<'\n';
         }
         else
         {
             std::cout<<shapeObj->GetInfo()<<std::endl;
         }
-        auto rectObj_revert = std::dynamic_pointer_cast<Rectangle>(shapeObj);
-        if (!squareObj)
-        {
-            std::cout<<"So, parent to child didn't work"<<'\n';
-        }
-        else
-        {
-            std::cout<<rectObj_revert->GetInfo()<<std::endl;
-        }
-    }
-    
-    {
-        auto shapeObj= std::make_shared<Shape>();
-        auto rectObj = std::dynamic_pointer_cast<Rectangle>(shapeObj);
-        if (!rectObj)
-        {
-            std::cout<<"So, parent to child didn't work"<<'\n';
-        }
-        else
-        {
-            std::cout<<rectObj->GetInfo()<<std::endl;
-        }
-
     }
    
 }

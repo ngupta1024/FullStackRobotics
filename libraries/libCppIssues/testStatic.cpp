@@ -5,26 +5,34 @@
 class Abc
 {
     private:
-    public:
-        Eigen::Vector3d a;
+        static Eigen::Vector3d a;
         static int b;
-
+    public:
         Abc()
         {
-           //a={0,0,0};
-           //b=1;
+           a={0,0,0};
+           b++;
         }
 
-        static void printa()
+        void printa()
         {
-           std::cout<<b<<std::endl;
+           std::cout<<a<<std::endl;
+        }
+
+        void increaseB()
+        {
+            b++;
+            std::cout<<b<<std::endl;
         }
 };
+
+int Abc::b= 1;
+Eigen::Vector3d Abc::a{0,0,0};
 
 int main()
 {
     Abc abc;
-    abc.b++;
+    abc.increaseB();
     abc.printa();
     return 0;
 }
