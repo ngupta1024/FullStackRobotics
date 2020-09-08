@@ -2,3 +2,4 @@
 *.swn
 *.swp
 ctci/cpp/bld/*
+libraries/libPlanner/bld/*

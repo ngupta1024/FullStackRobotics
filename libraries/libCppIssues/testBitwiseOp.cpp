@@ -17,7 +17,7 @@ int main()
 {
     enum flag: uint8_t
     {
-        ON=2,
+        ON=3,
         OFF=4
     };
 
